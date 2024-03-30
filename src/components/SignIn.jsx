@@ -1,6 +1,13 @@
 import React from "react";
 
 const SignIn = () => {
+
+    const handleSignIn=(e)=>{
+        e.preventDefault();
+
+        alert('hello')
+
+    }
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800">
@@ -10,7 +17,7 @@ const SignIn = () => {
             Sign in to access your account
           </p>
         </div>
-        <form novalidate="" action="" className="space-y-12">
+        <form novalidate="" action="" onSubmit={handleSignIn} className="space-y-12">
           <div className="space-y-4">
             <div>
               <label for="email" className="block mb-2 text-sm">
@@ -49,7 +56,7 @@ const SignIn = () => {
           <div className="space-y-2">
             <div>
               <button
-                type="button"
+                type="submit"
                 className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
               >
                 Sign in
