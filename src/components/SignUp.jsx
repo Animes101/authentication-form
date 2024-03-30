@@ -6,6 +6,7 @@ const SignUp = () => {
     const [singUpError ,setSignUpError]=useState('');
     const [successAcount ,setSuccessAcount]=useState('');
     const [validationUsr ,setValidationUsr]=useState('');
+    const [passwordShow ,setPasswordShow]=useState(false);
   const handleSubmitSignUp = (e) => {
     e.preventDefault();
 
@@ -15,6 +16,10 @@ const SignUp = () => {
     if(password.length < 3){
         setValidationUsr('password must be 6 cherector');
         return ;
+    }else if(!/(?=.*[a-z])/.test(password)){
+        setValidationUsr('password small letter');
+        return ;
+
     }
 
     createUserWithEmailAndPassword(auth, email, password)
@@ -37,6 +42,7 @@ const SignUp = () => {
 
       setSignUpError('')
       setSuccessAcount('');
+      setValidationUsr('')
   };
   return (
     <div className="flex justify-center items-center h-screen">
@@ -78,12 +84,13 @@ const SignUp = () => {
                   </a>
                 </div>
                 <input
-                  type="password"
+                  type={passwordShow ? 'text' : 'password'}
                   name="password"
                   id="password"
                   placeholder="*****"
                   className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
                 />
+                <span className="curser-pointer" onClick={()=>setPasswordShow(!passwordShow)}>show password</span>
                 {validationUsr && <p>{validationUsr}</p>}
               </div>
             </div>
